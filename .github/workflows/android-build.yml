@@ -26,14 +26,14 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      # Explicit packages override the action's default legacy "tools" package.
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
           packages: 'platform-tools'
 
-      - name: Install required Android SDK components
+      - name: Accept licenses and install SDK
         run: |
+          yes | sdkmanager --licenses || true
           sdkmanager --install \
             "platform-tools" \
             "platforms;android-35" \
